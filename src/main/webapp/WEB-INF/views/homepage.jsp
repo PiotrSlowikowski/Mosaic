@@ -12,15 +12,15 @@
     <title>Welcome to Home Page.</title>
 </head>
 <body>
-<div id="container" style="width: ${rozdzielczosc}px; height: ${rozdzielczosc}px">
+<div id="container" >
 
     <h1>MOZAIKA</h1>
-    <div id="rectangle">
+    <div id="rectangle" style="width: ${rozdzielczosc}px; height: ${rozdzielczosc}px">
 
 
         <c:forEach items="${zdjecia}" var="zzdjecie">
         <td>
-                <img src="${zzdjecie}" width="450" height="450"
+                <img src="${zzdjecie}"
                      alt="Something went wrong.">
             </td>
         </c:forEach>

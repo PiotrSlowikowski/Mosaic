@@ -1,11 +1,11 @@
 
 #container{
+    place-content: center;
     text-align: center;
     margin: auto;
 }
 
 #rectangle{
-    align-content: center;
 }
 
 #rectangle > img {

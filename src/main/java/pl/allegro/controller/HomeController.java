@@ -13,30 +13,24 @@ import java.util.Optional;
 @RequestMapping(path = "/")
 public class HomeController {
 
-        @RequestMapping("/")
-        public String passingUrls (Model model, @RequestParam List<String> zdjecia,
-                                   @RequestParam Optional<String> losowo,
-                                   @RequestParam String rozdzielczosc){
+    @RequestMapping("/")
+    public String passingUrls(Model model, @RequestParam List<String> zdjecia,
+                              @RequestParam Optional<String> losowo,
+                              @RequestParam Optional<String> rozdzielczosc) {
 
-            if (losowo.get().equals("1")) {
-                Collections.shuffle(zdjecia);
-            }
+        if (losowo.get().equals("1")) {
+            Collections.shuffle(zdjecia);
+        }
+        model.addAttribute("zdjecia", zdjecia);
+        model.addAttribute("losowo", losowo);
 
-            model.addAttribute("zdjecia", zdjecia);
-            model.addAttribute("losowo", losowo);
-
-            if (!rozdzielczosc.equals(null)) {
-                model.addAttribute("rozdzielczosc", rozdzielczosc);
-            } else {
-                rozdzielczosc = "2048";
-                model.addAttribute("rozdzielczosc", rozdzielczosc);
-            }
-
-            return "homepage";
+        if (rozdzielczosc.isPresent()) {
+            model.addAttribute("rozdzielczosc", rozdzielczosc.get());
+        } else {
+            model.addAttribute("rozdzielczosc", rozdzielczosc.orElse("2048"));
         }
 
-
-
-
-
+        return "homepage";
     }
+
+}
