@@ -1,16 +1,11 @@
-
-#container{
-    place-content: center;
-    text-align: center;
+.image {
     margin: auto;
+    display: block;
+    grid-template-columns: repeat(2, [col-start] 1px);
 }
 
-#rectangle{
-}
-
-#rectangle > img {
+.container img {
     width: 49%;
     height: 49%;
-    float: left;
-    border: 1px solid black;
 }
+

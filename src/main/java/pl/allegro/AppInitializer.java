@@ -16,6 +16,6 @@ public class AppInitializer implements WebApplicationInitializer {
         ctx.setServletContext(container);
         ServletRegistration.Dynamic servlet = container.addServlet("dispatcher", new DispatcherServlet(ctx));
         servlet.setLoadOnStartup(1);
-        servlet.addMapping("");
+        servlet.addMapping("/mozaika");
     }
 }

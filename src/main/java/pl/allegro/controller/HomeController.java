@@ -10,27 +10,36 @@ import java.util.List;
 import java.util.Optional;
 
 @Controller
-@RequestMapping(path = "/")
 public class HomeController {
 
-    @RequestMapping("/")
+
+    @RequestMapping("/mozaika")
     public String passingUrls(Model model, @RequestParam List<String> zdjecia,
-                              @RequestParam Optional<String> losowo,
+                              @RequestParam Optional<Integer> losowo,
                               @RequestParam Optional<String> rozdzielczosc) {
 
-        if (losowo.get().equals("1")) {
+
+        if (losowo.isPresent() && losowo.get().equals(1)) {
             Collections.shuffle(zdjecia);
         }
         model.addAttribute("zdjecia", zdjecia);
         model.addAttribute("losowo", losowo);
 
-        if (rozdzielczosc.isPresent()) {
-            model.addAttribute("rozdzielczosc", rozdzielczosc.get());
+
+        if (rozdzielczosc.isPresent() && rozdzielczosc.get().length() >= 7 && rozdzielczosc.get().length() <= 9) {
+            String[] splittedParts = rozdzielczosc.get().split("x");
+            String width = splittedParts[0];
+            String height = splittedParts[1];
+            model.addAttribute("width", width);
+            model.addAttribute("height", height);
         } else {
-            model.addAttribute("rozdzielczosc", rozdzielczosc.orElse("2048"));
+            model.addAttribute("width", "2048");
+            model.addAttribute("height", "2048");
         }
+
 
         return "homepage";
     }
+
 
 }
